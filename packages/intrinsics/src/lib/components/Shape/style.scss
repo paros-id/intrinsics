@@ -1,0 +1,49 @@
+$shapes: (
+    "1x1": #{calc(1/1) * 100},
+    "1x2": #{calc(1/2) * 100},
+    "2x1": #{calc(2/1) * 100},
+    "3x2": #{calc(3/2) * 100},
+    "2x3": #{calc(2/3) * 100},
+    "4x3": #{calc(4/3) * 100},
+    "3x4": #{calc(3/4) * 100},
+    "16x9": #{calc(16/9) * 100},
+    "9x16": #{calc(9/16) * 100},
+    "21x9": #{calc(21/9) * 100},
+    "9x21": #{calc(9/21) * 100},
+);
+
+.shape {
+    transition: all .2s ease;
+    transform: translateZ(0); // Enable GPU acceleration
+    position: relative;
+    overflow: hidden;
+
+    .inner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+    }
+
+    &.is-square:after,
+    &.is-squircle:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    &.is-circle {
+        border-radius: 50%;
+    }
+
+    &.is-squircle {
+        border-radius: .5rem;
+    }
+
+    &.is-rectangle {
+        @each $ratio, $value in $shapes {
+            &.is-ratio-#{$ratio}:after { padding-bottom: #{$value + "%"} }
+        }
+    }
+}

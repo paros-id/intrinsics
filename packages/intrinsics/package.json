@@ -1,0 +1,63 @@
+{
+    "name": "@paros-ui/intrinsics",
+    "version": "0.0.4",
+    "type": "module",
+    "keywords": [],
+    "author": "alex.jenks@paros.id",
+    "license": "MIT",
+    "description": "A series of components used to create more complex components",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "build-and-publish": "npm run build && cd dist && npm publish --access=public"
+    },
+    "dependencies": {
+        "react": "^18.0.0 || 18.x",
+        "react-dom": "^18.0.0 || 18.x",
+        "vite-plugin-css-injected-by-js": "^3.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^18.15.5",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-react": "^3.1.0",
+        "json": "^11.0.0",
+        "sass": "^1.59.3",
+        "typescript": "^4.9.3",
+        "vite": "^4.2.0",
+        "vite-plugin-dts": "^2.1.0"
+    },
+    "peerDependencies": {
+        "react": "^18.0.0 || 18.x",
+        "react-dom": "^18.0.0 || 18.x"
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/intrinsics.umd.js",
+    "module": "./dist/intrinsics.es.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "require": "./dist/index.js"
+        },
+        "./classnames": {
+            "import": "./dist/classnames.js",
+            "require": "./dist/classnames.js"
+        },
+        "./Polymorphism": {
+            "import": "./dist/Polymorphism.js",
+            "require": "./dist/Polymorphism.js"
+        },
+        "./components/Panel/index": {
+            "import": "./dist/components/Panel/index.js",
+            "require": "./dist/components/Panel/index.js"
+        },
+        "./components/Shape/index": {
+            "import": "./dist/components/Shape/index.js",
+            "require": "./dist/components/Shape/index.js"
+        }
+    }
+}
