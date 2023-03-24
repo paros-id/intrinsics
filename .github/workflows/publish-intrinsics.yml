@@ -9,14 +9,17 @@ on:
 
 jobs:
   build:
+    name: Publish Intrinsics Library
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/intrinsics
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
         node-version: '16.x'
         registry-url: 'https://registry.npmjs.org'
-    - run: cd packages/intrinsics
     - run: npm ci
     - run: npm run build
     - run: cd dist && npm publish --access=public
