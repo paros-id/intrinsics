@@ -1,11 +1,8 @@
 name: Publish
 
 on:
-  push:
-    branches:
-    - master
-    paths:
-    - "packages/intrinsics/**"
+  release:
+    types: [created]
 
 jobs:
   build:
