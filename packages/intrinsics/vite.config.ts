@@ -27,7 +27,12 @@ export default defineConfig({
     plugins: [
         react(),
         npmDist(components),
-        dts({ insertTypesEntry: true }),
+        dts({
+            staticImport: true,
+            skipDiagnostics: false,
+            rollupTypes: true,
+            insertTypesEntry: true
+        }),
         cssSibling(),
         libcss()
     ],

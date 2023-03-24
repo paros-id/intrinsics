@@ -18,5 +18,5 @@ export type BitComponent<P, T extends ElementType> = <C extends ElementType = T>
  */
 export function createBitComponent<P extends {}, C extends ElementType>(name: string, component: BitComponent<P, C>) {
     Object.defineProperty(component, "name", { writable: false, value: name });
-    return forwardRef(component);
+    return forwardRef(component) as any as BitComponent<P, C>;
 }
