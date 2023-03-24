@@ -1,0 +1,23 @@
+.material-icon {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    // font-size: 1.5rem;
+    // line-height: 1;
+    // display: inline-block;
+    // color: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+
+    &.variant-outline { font-family: 'Material Icons Outlined'; }
+    &.variant-round   { font-family: 'Material Icons Round';    }
+    &.variant-twotone { font-family: 'Material Icons Two Tone'; }
+    &.variant-sharp   { font-family: 'Material Icons Sharp';    }
+}
