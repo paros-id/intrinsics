@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - master
+    paths:
+    - "packages/intrinsics/**"
 
 jobs:
   build:
@@ -14,6 +16,7 @@ jobs:
       with:
         node-version: '16.x'
         registry-url: 'https://registry.npmjs.org'
+    - run: cd packages/intrinsics
     - run: npm ci
     - run: npm run build
     - run: cd dist && npm publish --access=public
