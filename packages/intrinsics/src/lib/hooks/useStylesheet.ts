@@ -2,7 +2,7 @@ import React from "react";
 
 let cache: Record<string, HTMLLinkElement> = {};
 
-export const useStylesheet = (url: string) => {
+export const useStylesheet = (url: string, destroy = false) => {
     React.useEffect(() => {
         let elem = cache[url];
 
@@ -15,13 +15,12 @@ export const useStylesheet = (url: string) => {
             cache[url] = elem;
         }
 
-        //? Commented out to keep stylesheet links in head, better perf w/ toggle buttons
-        // return () => {
-        //     if(document.head.contains(elem) && cache[url]) {
-        //         elem.remove();
-        //         delete cache[url];
-        //     }
-        // };
+        if(destroy) return () => {
+            if(document.head.contains(elem) && cache[url]) {
+                elem.remove();
+                delete cache[url];
+            }
+        };
     }, [ url ]);
 };
 

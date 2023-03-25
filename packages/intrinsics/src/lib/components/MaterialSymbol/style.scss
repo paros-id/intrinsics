@@ -1,5 +1,4 @@
-.material-icon {
-    font-family: 'Material Icons';
+.material-symbol {
     font-weight: normal;
     font-style: normal;
     text-transform: none;
@@ -11,9 +10,4 @@
     text-rendering: optimizeLegibility;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: 'liga';
-
-    &.variant-outline { font-family: 'Material Icons Outlined'; }
-    &.variant-round   { font-family: 'Material Icons Round';    }
-    &.variant-twotone { font-family: 'Material Icons Two Tone'; }
-    &.variant-sharp   { font-family: 'Material Icons Sharp';    }
 }
