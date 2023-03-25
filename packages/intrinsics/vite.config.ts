@@ -7,32 +7,40 @@ import dts from "vite-plugin-dts";
 import libcss, { cssSibling } from "./plugins/libcss";
 import npmDist from "./plugins/npmDist";
 
-// import cssInjection from "vite-plugin-css-injected-by-js";
-
 const indexFile = fs.readFileSync("./src/lib/index.ts", "utf-8").toString();
 const regex = /^export { default as (\w+) } from "(.*)";/gmi;
 
 let components = [
     { name: "index", path: path.resolve(__dirname, "src/lib/index.ts") },
-    { name: "classnames", path: path.resolve(__dirname, "src/lib/classnames.ts") },
     { name: "Polymorphism", path: path.resolve(__dirname, "src/lib/Polymorphism.ts") }
 ];
 
 let match;
 while((match = regex.exec(indexFile))) {
-    components.push({ name: `components/${match[1]}/index`, path: path.resolve(__dirname, "src/lib", match[2]) });
+    let [, folder, file] = /\/(\w+)\/(\w+)/g.exec(match[2]) || [];
+    if(folder === "components") {
+        components.push({
+            name: `components/${match[1]}/index`,
+            path: path.resolve(__dirname, "src/lib", match[2])
+        });
+    } else if(folder) {
+        components.push({
+            name: `${folder}/${file}`,
+            path: path.resolve(__dirname, "src/lib", match[2])
+        });
+    } else {
+        components.push({
+            name: match[1],
+            path: path.resolve(__dirname, "src/lib", match[2])
+        });
+    }
 }
 
 export default defineConfig({
     plugins: [
-        react(),
+        react({ jsxRuntime: "classic", jsxPure: false }),
         npmDist(components),
-        dts({
-            staticImport: true,
-            skipDiagnostics: false,
-            rollupTypes: true,
-            insertTypesEntry: true
-        }),
+        dts({ insertTypesEntry: true }),
         cssSibling(),
         libcss()
     ],
