@@ -1,5 +1,5 @@
 import { createBitComponent } from "../../Polymorphism";
-import { useStylesheet } from "../../hooks/useStylesheet";
+import useStylesheet from "../../hooks/useStylesheet";
 import classNames from "../../classnames";
 
 import "./style.scss";
